@@ -1,0 +1,44 @@
+<div class="parent-container">
+  <div style="display: flex;align-items: center; gap: .3em">
+    <span>Latest</span>
+    <input type="number" style="width: 4ch" value="4"/>
+    <span>weeks</span>
+  </div>
+  <div style="display: flex; justify-content: space-between">
+    <div style="display: flex;align-items: center; gap: .3em">
+      <span>Relative</span>
+      <label class="switch">
+        <input type="checkbox" checked>
+        <span class="slider round"></span>
+      </label>
+      <span>Aligned</span>
+    </div>
+    <div class="actions">
+      <button class="action-button">Latest week</button>
+      <button class="action-button">Latest 4 weeks</button>
+      <button class="action-button">Latest 13 weeks</button>
+      <button class="action-button">Latest 26 weeks</button>
+      <button class="action-button">Latest 52 weeks</button>
+      <button class="action-button">All weeks</button>
+    </div>
+  </div>
+  <div class="visual-container">
+    <table class="data-grid">
+      <thead>
+      <th>
+        DataSet / Weeks
+      </th>
+      <th *ngFor="let item of datasetAvailability" class="grid-header">
+        {{item[0]}}
+      </th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let dataset of datasets; let i = index">
+        <td class="dataset-cell">{{dataset}}</td>
+        <td *ngFor="let item of datasetAvailability" [ngClass]="{'data-available':item[i+1]==='TRUE'}">
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
