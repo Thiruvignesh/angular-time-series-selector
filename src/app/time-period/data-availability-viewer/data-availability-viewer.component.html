@@ -1,8 +1,26 @@
 <div class="parent-container">
-  <div style="display: flex;align-items: center; gap: .3em">
-    <span>Latest</span>
-    <input type="number" style="width: 4ch" value="4"/>
-    <span>weeks</span>
+  <div style="display: flex;align-items:center;justify-content: space-between ; gap: .3em">
+    <div>
+      <span>Latest</span>
+      <input style="width: 4ch" type="number" value="4"/>
+      <span>weeks</span>
+    </div>
+    <div>
+      <button class="action-button">Start range - latest</button>
+      <button class="action-button">End range - latest</button>
+    </div>
+    <div>
+      <!--      <span>Select date instead of weeks</span>-->
+      <mat-form-field appearance="fill">
+        <mat-label>Date start and End</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate placeholder="Start date">
+          <input matEndDate placeholder="End date">
+        </mat-date-range-input>
+        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+      </mat-form-field>
+    </div>
   </div>
   <div style="display: flex; justify-content: space-between">
     <div style="display: flex;align-items: center; gap: .3em">
@@ -23,25 +41,6 @@
     </div>
   </div>
   <div class="visual-container">
-    <!--    <table class="data-grid">-->
-    <!--      <thead>-->
-    <!--      <th>-->
-    <!--        DataSets / Weeks-->
-    <!--      </th>-->
-    <!--      <th *ngFor="let item of datasetAvailability; let index = index" class="grid-header"-->
-    <!--          [ngClass]="{'highlight':index==15}">-->
-    <!--        {{item[0]}}-->
-    <!--      </th>-->
-    <!--      </thead>-->
-    <!--      <tbody>-->
-    <!--      <tr *ngFor="let dataset of datasets; let i = index">-->
-    <!--        <td class="dataset-cell">{{dataset}}</td>-->
-    <!--        <td *ngFor="let item of datasetAvailability; let innerIndex=index"-->
-    <!--            [ngClass]="{'highlight':innerIndex==15,'data-available':item[i+1]==='TRUE'}">-->
-    <!--        </td>-->
-    <!--      </tr>-->
-    <!--      </tbody>-->
-    <!--    </table>-->
 
     <table class="chumma">
       <tr>
