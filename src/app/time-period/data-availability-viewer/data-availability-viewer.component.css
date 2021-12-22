@@ -1,7 +1,7 @@
 .parent-container{
   margin: 1em;
   width: 90em;
-  height: 50em;
+  height: 40em;
 }
 
 .actions{
@@ -115,7 +115,7 @@ tbody {
 }
  .dataset-cell{
    text-align: right;
-   padding-right: 1em;
+   /*padding-right: 0.5em;*/
  }
 
 
@@ -145,13 +145,27 @@ tbody {
   box-shadow: 0 1px 2px rgba(0,0,0,0.07),
   0 2px 4px rgba(0,0,0,0.07),
   0 4px 8px rgba(0,0,0,0.07),
-  0 8px 16px rgba(0,0,0,0.07),
-  0 16px 32px rgba(0,0,0,0.07),
-  0 32px 64px rgba(0,0,0,0.07);
+  0 8px 16px rgba(0, 0, 0, 0.07),
+  0 16px 32px rgba(0, 0, 0, 0.07),
+  0 32px 64px rgba(0, 0, 0, 0.07);
 }
 
 .chumma tr td {
   display: block;
-  height: 50px;
+  /*height: 50px;*/
   width: 50px;
+}
+
+.th {
+  border: .005em solid black;
+  height: 60px;
+  font-size: medium;
+}
+
+.tr {
+  height: 20px;
+}
+
+.tr-empty {
+  height: 15px;
 }

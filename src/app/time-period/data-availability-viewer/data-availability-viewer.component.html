@@ -23,46 +23,44 @@
     </div>
   </div>
   <div class="visual-container">
-    <table class="data-grid">
-      <thead>
-      <th>
-        DataSets / Weeks
-      </th>
-      <th *ngFor="let item of datasetAvailability; let index = index" class="grid-header"
-          [ngClass]="{'highlight':index==15}">
-        {{item[0]}}
-      </th>
-      </thead>
-      <tbody>
-      <tr *ngFor="let dataset of datasets; let i = index">
-        <td class="dataset-cell">{{dataset}}</td>
-        <td *ngFor="let item of datasetAvailability; let innerIndex=index"
-            [ngClass]="{'highlight':innerIndex==15,'data-available':item[i+1]==='TRUE'}">
-        </td>
-      </tr>
-      </tbody>
-    </table>
+    <!--    <table class="data-grid">-->
+    <!--      <thead>-->
+    <!--      <th>-->
+    <!--        DataSets / Weeks-->
+    <!--      </th>-->
+    <!--      <th *ngFor="let item of datasetAvailability; let index = index" class="grid-header"-->
+    <!--          [ngClass]="{'highlight':index==15}">-->
+    <!--        {{item[0]}}-->
+    <!--      </th>-->
+    <!--      </thead>-->
+    <!--      <tbody>-->
+    <!--      <tr *ngFor="let dataset of datasets; let i = index">-->
+    <!--        <td class="dataset-cell">{{dataset}}</td>-->
+    <!--        <td *ngFor="let item of datasetAvailability; let innerIndex=index"-->
+    <!--            [ngClass]="{'highlight':innerIndex==15,'data-available':item[i+1]==='TRUE'}">-->
+    <!--        </td>-->
+    <!--      </tr>-->
+    <!--      </tbody>-->
+    <!--    </table>-->
 
     <table class="chumma">
       <tr>
-        <td>Data sets / Weeks</td>
-        <td></td>
+        <td class="th">Data sets / Weeks</td>
+        <td class="tr-empty"></td>
         <span *ngFor="let dataset of datasets; let i = index">
-        <td>
+        <td class="tr dataset-cell">
           {{dataset}}
         </td>
-          <td></td>
+          <td class="tr-empty"></td>
         </span>
       </tr>
       <tr *ngFor="let item of datasetAvailability; let index=index">
-        <td>{{item[0]}}</td>
-        <td></td>
+        <td class="th">{{item[0]}}</td>
+        <td class="tr-empty"></td>
         <span *ngFor="let dataset of datasets; let innerIndex=index">
-
-        <td
-          [ngClass]="{'data-available':item[innerIndex+1]==='TRUE'}">
-        </td>
-          <td></td>
+        <td class="tr"
+            [ngClass]="{'data-available':item[innerIndex+1]==='TRUE'}">
+        </td><td class="tr-empty"></td>
         </span>
       </tr>
     </table>
