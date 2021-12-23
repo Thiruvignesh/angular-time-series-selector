@@ -44,21 +44,23 @@
 
     <table class="chumma">
       <tr>
+        <td class="th">Week ending date</td>
         <td class="th">Data sets / Weeks</td>
         <td class="tr-empty"></td>
         <span *ngFor="let dataset of datasets; let i = index">
-        <td class="tr dataset-cell">
+        <td class="tr dataset-cell vertical-text">
           {{dataset}}
         </td>
           <td class="tr-empty"></td>
         </span>
       </tr>
       <tr *ngFor="let item of datasetAvailability; let index=index">
-        <td class="th">{{item[0]}}</td>
+        <td class="th vertical-text">{{item[1]}}</td>
+        <td class="th vertical-text">{{item[0]}}</td>
         <td class="tr-empty"></td>
         <span *ngFor="let dataset of datasets; let innerIndex=index">
         <td class="tr"
-            [ngClass]="{'data-available':item[innerIndex+1]==='TRUE'}">
+            [ngClass]="{'data-available':item[innerIndex+2]==='TRUE'}">
         </td><td class="tr-empty"></td>
         </span>
       </tr>
