@@ -6,39 +6,46 @@
       <span>weeks</span>
     </div>
     <div>
-      <button class="action-button">Fix start range to beginning</button>
-      <button class="action-button">Fix end range to latest</button>
+      <button class="action-button">Select Start Week</button>
+      <button class="action-button">Select End Week</button>
     </div>
-    <div>
-      <!--      <span>Select date instead of weeks</span>-->
-      <mat-form-field appearance="fill">
-        <mat-label>Date start and End</mat-label>
-        <mat-date-range-input [rangePicker]="picker">
-          <input matStartDate placeholder="Start date">
-          <input matEndDate placeholder="End date">
-        </mat-date-range-input>
-        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>
-        <mat-date-range-picker #picker></mat-date-range-picker>
-      </mat-form-field>
-    </div>
-  </div>
-  <div style="display: flex; justify-content: space-between">
     <div style="display: flex;align-items: center; gap: .3em">
-      <span>Relative</span>
+      <span>Different Ending</span>
       <label class="switch">
-        <input type="checkbox" checked>
+        <input checked type="checkbox">
         <span class="slider round"></span>
       </label>
-      <span>Aligned</span>
+      <span>Same Ending</span>
+      <!--      <span>Select date instead of weeks</span>-->
+      <!--      <mat-form-field appearance="fill">-->
+      <!--        <mat-label>Date start and End</mat-label>-->
+      <!--        <mat-date-range-input [rangePicker]="picker">-->
+      <!--          <input matStartDate placeholder="Start date">-->
+      <!--          <input matEndDate placeholder="End date">-->
+      <!--        </mat-date-range-input>-->
+      <!--        <mat-datepicker-toggle [for]="picker" matSuffix></mat-datepicker-toggle>-->
+      <!--        <mat-date-range-picker #picker></mat-date-range-picker>-->
+      <!--      </mat-form-field>-->
     </div>
-    <div class="actions">
-      <button class="action-button">Latest week</button>
-      <button class="action-button">Latest 4 weeks</button>
-      <button class="action-button">Latest 13 weeks</button>
-      <button class="action-button">Latest 26 weeks</button>
-      <button class="action-button">Latest 52 weeks</button>
-      <button class="action-button">All weeks</button>
-    </div>
+
+  </div>
+  <div style="display: flex; justify-content: space-between">
+    <!--    <div style="display: flex;align-items: center; gap: .3em">-->
+    <!--      <span>Different Ending</span>-->
+    <!--      <label class="switch">-->
+    <!--        <input type="checkbox" checked>-->
+    <!--        <span class="slider round"></span>-->
+    <!--      </label>-->
+    <!--      <span>Same Ending</span>-->
+    <!--    </div>-->
+    <!--    <div class="actions">-->
+    <!--      <button class="action-button">Latest week</button>-->
+    <!--      <button class="action-button">Latest 4 weeks</button>-->
+    <!--      <button class="action-button">Latest 13 weeks</button>-->
+    <!--      <button class="action-button">Latest 26 weeks</button>-->
+    <!--      <button class="action-button">Latest 52 weeks</button>-->
+    <!--      <button class="action-button">All weeks</button>-->
+    <!--    </div>-->
   </div>
   <div class="visual-container">
 

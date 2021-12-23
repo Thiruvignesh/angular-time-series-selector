@@ -153,21 +153,21 @@ tbody {
 .chumma tr td {
   display: block;
   /*height: 50px;*/
-  width: 20px;
+  width: 50px;
 }
 
-.vertical-text {
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
-}
+/*.vertical-text {*/
+/*  writing-mode: vertical-lr;*/
+/*  transform: rotate(180deg);*/
+/*}*/
 
 .th {
   border: .005em solid black;
-  height: 100px;
+  height: 60px;
   font-size: smaller;
   /*text-orientation: upright;*/
-  writing-mode: vertical-lr;
-  transform: rotate(180deg);
+  /*writing-mode: vertical-lr;*/
+  /*transform: rotate(180deg);*/
 }
 
 .tr {
