@@ -1,14 +1,4 @@
-/* table td {
-  border: 1px solid #999;
-  width: 80px;
-  height: 40px;
-  margin: 10px;
-} */
 
-/* td.selected {
-  background-color: lightblue;
-  border-inline: solid 1px lightblue;
-} */
 .th {
   border-bottom:1px solid #000;
   border-left:1px solid #000;
@@ -16,11 +6,11 @@
 }
 tr.selected {
   background-color: #bdd7ee;
-  border-inline: solid 1px lightblue;
+  /* border-inline: solid 1px lightblue; */
 }
 td.selected {
   background-color: #bdd7ee;
-  border-inline: solid 1px lightblue;
+  /* border-inline: solid 1px lightblue; */
 }
 
 thead{
@@ -159,27 +149,17 @@ tbody {
   border-inline: 1px solid lightskyblue;
 }
  .dataset-cell{
-   text-align: right;
+   text-align: center;
    /*padding-right: 0.5em;*/
  }
 
 
-.highlight {
-  border: 0.25em solid #002060;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-  0 2px 4px rgba(0,0,0,0.07),
-  0 4px 8px rgba(0,0,0,0.07),
-  0 8px 16px rgba(0,0,0,0.07),
-  0 16px 32px rgba(0,0,0,0.07),
-  0 32px 64px rgba(0,0,0,0.07);
-  /*-webkit-box-shadow: 0 0 10px rgb(0,0,0);*/
-  /*-moz-box-shadow: 0 0 10px rgb(0,0,0);*/
-}
 
-.chumma {
+
+.timeRangeTable {
   display: table;
 }
-.chumma tr {
+.timeRangeTable tr {
   display: table-cell;
   height: 200px;
   width: 50px;
@@ -188,18 +168,12 @@ tbody {
 tr:hover + tr td {
   border-top: none;
 }
-.chumma tr:hover{
-  -moz-box-shadow: inset 0 0 1px #000;
-  border: 0.25em solid #002060;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.07),
-  0 2px 4px rgba(0,0,0,0.07),
-  0 4px 8px rgba(0,0,0,0.07),
-  0 8px 16px rgba(0, 0, 0, 0.07),
-  0 16px 32px rgba(0, 0, 0, 0.07),
-  0 32px 64px rgba(0, 0, 0, 0.07);
+.timeRangeTable tr:hover{
+  outline: 0.25em solid #002060;
+ 
 }
 
-.chumma tr td {
+.timeRangeTable tr td {
   display: block;
   /*height: 50px;*/
   width: 50px;

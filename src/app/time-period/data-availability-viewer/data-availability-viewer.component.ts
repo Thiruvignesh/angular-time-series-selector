@@ -361,8 +361,10 @@ export class DataAvailabilityViewerComponent implements OnInit {
             element.addEventListener(event, this.handler)));
 
         // this.table!.querySelectorAll.bind("selectstart", "false");
-
-
+        var element = document.getElementById("timeRangeTableContainer");
+        if (element) {
+            element.scrollLeft = element?.scrollWidth;
+        }
         document.querySelector("#table")!.addEventListener("mouseup", (e) => {
             this.isMouseDown = false;
         });
@@ -373,8 +375,9 @@ export class DataAvailabilityViewerComponent implements OnInit {
 
     handler = (e: MouseEvent) => {
         var eventType = e.type;
-        console.log(e);
-        var cell = e.target as HTMLTableCellElement;
+       
+;        var cell = e.target as HTMLTableCellElement;
+
         if (eventType == 'mousedown') {
             this.isMouseDown = true;
 
@@ -399,6 +402,8 @@ export class DataAvailabilityViewerComponent implements OnInit {
     }
 
     selectTo(cell: any) {
+        console.log(cell);
+
         var rowIndex = cell.closest('tr').rowIndex;
         var rowStart, rowEnd;
 
@@ -416,7 +421,13 @@ export class DataAvailabilityViewerComponent implements OnInit {
                 this.table?.querySelectorAll("tr")[i].classList.add("selected");
             }
         }
-        
+        else {
+            console.log("cellIndex", cell.cellIndex);
+
+            for (var i = rowStart; i <= rowEnd; i++) {
+                var rowCells = this.table!.querySelectorAll("tr")[i].querySelectorAll("td");
+            }
+        }
     }
 
     endWeekSelected() {
