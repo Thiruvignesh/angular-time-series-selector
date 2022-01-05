@@ -7,7 +7,6 @@ import { HttpClient } from "@angular/common/http";
 })
 
 export class DataAvailabilityViewerComponent implements OnInit {
-    @ViewChild('isSameEnding') isSameEnding: ElementRef | undefined;
 
     datasets: string[] = ['IRI', 'POS', 'GRM'];
     minWeek = '2021-12-04';
@@ -344,6 +343,7 @@ export class DataAvailabilityViewerComponent implements OnInit {
     table: any;
     tableCellData: any;
     isMouseDown = false;
+    isSameWeekEnding: boolean = true;
 
     constructor(private http: HttpClient) {
     }
@@ -375,38 +375,37 @@ export class DataAvailabilityViewerComponent implements OnInit {
 
     handler = (e: MouseEvent) => {
         var eventType = e.type;
-       
-;        var cell = e.target as HTMLTableCellElement;
+        if (this.isSameWeekEnding) {
+            var cell = e.target as HTMLTableCellElement;
 
-        if (eventType == 'mousedown') {
-            this.isMouseDown = true;
+            if (eventType == 'mousedown') {
+                this.isMouseDown = true;
 
 
-            this.removeSelectedClass();
+                this.removeSelectedClass();
 
-            if (e.shiftKey) {
-                this.selectTo(cell);
-            } else {
-                cell.classList.add("selected");
-                this.startRowIndex = cell.closest('tr')!.rowIndex;
+                if (e.shiftKey) {
+                    this.selectTo(cell);
+                } else {
+                    cell.classList.add("selected");
+                    this.startRowIndex = cell.closest('tr')!.rowIndex;
+                    this.selectTo(cell);
+                }
+                return false; // prevent text selection
+            } else if (eventType == 'mouseover') {
+                if (!this.isMouseDown) return;
+                this.removeSelectedClass();
                 this.selectTo(cell);
             }
-            return false; // prevent text selection
-        } else if (eventType == 'mouseover') {
-            if (!this.isMouseDown) return;
-            this.removeSelectedClass();
-            this.selectTo(cell);
-        }
 
-        return false;
+            return false;
+        }
+        return true;
     }
 
     selectTo(cell: any) {
-        console.log(cell);
-
         var rowIndex = cell.closest('tr').rowIndex;
         var rowStart, rowEnd;
-
 
         if (rowIndex < this.startRowIndex) {
             rowStart = rowIndex;
@@ -415,19 +414,10 @@ export class DataAvailabilityViewerComponent implements OnInit {
             rowStart = this.startRowIndex;
             rowEnd = rowIndex;
         }
-        if (this.isSameEnding?.nativeElement.checked) {
-
-            for (var i = rowStart; i <= rowEnd; i++) {
-                this.table?.querySelectorAll("tr")[i].classList.add("selected");
-            }
+        for (var i = rowStart; i <= rowEnd; i++) {
+            this.table?.querySelectorAll("tr")[i].classList.add("selected");
         }
-        else {
-            console.log("cellIndex", cell.cellIndex);
 
-            for (var i = rowStart; i <= rowEnd; i++) {
-                var rowCells = this.table!.querySelectorAll("tr")[i].querySelectorAll("td");
-            }
-        }
     }
 
     endWeekSelected() {
@@ -456,4 +446,6 @@ export class DataAvailabilityViewerComponent implements OnInit {
         document.querySelectorAll('#table tr.selected').forEach(i => i.classList.remove('selected'));
         document.querySelectorAll('#table td.selected').forEach(i => i.classList.remove('selected'));
     }
+
+
 }
