@@ -2,7 +2,7 @@
   <div style="display: flex;align-items:center;justify-content: space-between ; gap: .3em">
     <div>
       <span>Latest</span>
-      <input style="width: 4ch" type="number" (input)="onLatestWeekChange($event.target)" />
+      <input style="width: 4ch" id="latestWeekInput" type="number" (input)="onLatestWeekChange($event.target)" />
       <span>weeks</span>
     </div>
     <div>
@@ -33,7 +33,7 @@
         <td class="th">Data sets / Weeks</td>
         <td  class="tr-empty"></td>
         <!-- <span *ngFor="let dataset of datasets; let i = index"> -->
-        <td *ngFor="let dataset of datasets; let i = index"  class="tr dataset-cell vertical-text">
+        <td *ngFor="let dataset of datasets; let i = index" id="{{dataset}}" class="tr dataset-cell vertical-text">
           {{dataset}}
         </td>
           <!-- <td class="tr-empty"></td> -->

@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from "@angular/common/http";
+import { data } from 'jquery';
 @Component({
     selector: 'app-data-availability-viewer',
     templateUrl: './data-availability-viewer.component.html',
@@ -7,9 +8,23 @@ import { HttpClient } from "@angular/common/http";
 })
 
 export class DataAvailabilityViewerComponent implements OnInit {
-
     datasets: string[] = ['IRI', 'POS', 'GRM'];
     minWeek = '2021-12-04';
+    dataSetMaxDates: { [key: string]: any } = {
+        "IRI":
+        {
+            "date": "2022-01-01",
+            "cellIndex": -1
+        },
+        "POS": {
+            "date": "2021-12-04",
+            "cellIndex": -1
+        },
+        "GRM": {
+            "date": "2021-12-18",
+            "cellIndex": -1
+        }
+    }
     datasetAvailability: any[] = [
 
         ["2018-11 WK 4", "2018-12-01", "TRUE", "TRUE", "TRUE"],
@@ -339,6 +354,7 @@ export class DataAvailabilityViewerComponent implements OnInit {
         ["2022-01 WK 1", "2022-01-08", "FALSE", "FALSE", "FALSE"]
     ];
 
+
     startRowIndex: number = 0;
     table: any;
     tableCellData: any;
@@ -365,6 +381,11 @@ export class DataAvailabilityViewerComponent implements OnInit {
         if (element) {
             element.scrollLeft = element?.scrollWidth;
         }
+
+        for (let dataset of this.datasets) {
+            this.dataSetMaxDates[dataset]["cellIndex"] = this.table!.querySelectorAll("#" + dataset)[0].cellIndex;
+        }
+
         document.querySelector("#table")!.addEventListener("mouseup", (e) => {
             this.isMouseDown = false;
         });
@@ -406,6 +427,7 @@ export class DataAvailabilityViewerComponent implements OnInit {
     selectTo(cell: any) {
         var rowIndex = cell.closest('tr').rowIndex;
         var rowStart, rowEnd;
+        var maxRowIndex = document.getElementById(this.minWeek)?.closest('tr')?.rowIndex ?? 0;
 
         if (rowIndex < this.startRowIndex) {
             rowStart = rowIndex;
@@ -414,10 +436,22 @@ export class DataAvailabilityViewerComponent implements OnInit {
             rowStart = this.startRowIndex;
             rowEnd = rowIndex;
         }
+
+        if (rowEnd > maxRowIndex) {
+            rowEnd = maxRowIndex;
+        }
         for (var i = rowStart; i <= rowEnd; i++) {
             this.table?.querySelectorAll("tr")[i].classList.add("selected");
         }
 
+    }
+
+    selectDifferentEndingDates(cell: any, dataset: string) {
+        var endRowIndex = cell.closest('tr').rowIndex;
+        for (var i = this.startRowIndex; i <= endRowIndex; i++) {
+            var rowCells = this.table!.querySelectorAll("tr")[i].querySelectorAll("td");
+            rowCells[this.dataSetMaxDates[dataset]["cellIndex"]].classList.add("selected");
+        }
     }
 
     endWeekSelected() {
@@ -434,18 +468,30 @@ export class DataAvailabilityViewerComponent implements OnInit {
     onLatestWeekChange(targetElement: any) {
         document.querySelectorAll('#table tr.selected').forEach(i => i.classList.remove('selected'));
         let targetElementValue = targetElement.value;
-        let minWeekElement = document.getElementById(this.minWeek);
-
         if (targetElementValue) {
-            this.startRowIndex = (minWeekElement?.closest('tr')?.rowIndex ?? 0) - targetElementValue + 1;
-            this.selectTo(minWeekElement);
+            if (this.isSameWeekEnding) {
+                let minWeekElement = document.getElementById(this.minWeek);
+                this.startRowIndex = (minWeekElement?.closest('tr')?.rowIndex ?? 0) - targetElementValue + 1;
+                this.selectTo(minWeekElement);
+            } else {
+
+                for (let dataset of this.datasets) {
+                    let minWeekElement = document.getElementById(this.dataSetMaxDates[dataset]["date"]);
+                    this.startRowIndex = (minWeekElement?.closest('tr')?.rowIndex ?? 0) - targetElementValue + 1;
+                    this.selectDifferentEndingDates(minWeekElement, dataset);
+                }
+            }
+        } else {
+            this.removeSelectedClass();
         }
     }
 
     removeSelectedClass() {
         document.querySelectorAll('#table tr.selected').forEach(i => i.classList.remove('selected'));
         document.querySelectorAll('#table td.selected').forEach(i => i.classList.remove('selected'));
+        
     }
+
 
 
 }

@@ -10,7 +10,7 @@ tr.selected {
 }
 td.selected {
   background-color: #bdd7ee;
-  /* border-inline: solid 1px lightblue; */
+  border-inline: solid 1px #bdd7ee;
 }
 
 thead{
