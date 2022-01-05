@@ -403,7 +403,7 @@ export class DataAvailabilityViewerComponent implements OnInit {
                 this.isMouseDown = true;
 
 
-                this.removeSelectedClass();
+               // this.removeSelectedClass();
 
                 if (e.shiftKey) {
                     this.selectTo(cell);
@@ -415,7 +415,7 @@ export class DataAvailabilityViewerComponent implements OnInit {
                 return false; // prevent text selection
             } else if (eventType == 'mouseover') {
                 if (!this.isMouseDown) return;
-                this.removeSelectedClass();
+               // this.removeSelectedClass();
                 this.selectTo(cell);
             }
 
